@@ -7,11 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-50">
-        <main className="container mx-auto px-4">
-          {children}
-        </main>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
