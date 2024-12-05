@@ -6,6 +6,11 @@ export interface SpotifyImage {
   width?: number | null;
 }
 
+export interface MonthlyListenersData {
+  monthly_listeners: number;
+  timestamp: string;
+}
+
 export interface ArtistStats {
   id: string;
   name: string;
@@ -17,6 +22,7 @@ export interface ArtistStats {
   images: SpotifyImage[];
   spotifyUrl: string;
   lastUpdated: string;
+  monthlyListenersHistory: MonthlyListenersData[];
 }
 
 export type SpotifyArtist = SpotifyApi.ArtistObjectFull;
