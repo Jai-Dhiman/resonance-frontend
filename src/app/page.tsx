@@ -1,12 +1,10 @@
-import { SearchBar } from '@components/search/SearchBar';
+import SearchBar from '@/components/SearchBar'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="space-y-8">
-      <h1 className="text-4xl font-bold text-center text-text-primary dark:text-white">
-        Music Artist Analytics
-      </h1>
+    <main className="container mx-auto px-4 flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold mb-8">Artist Analytics</h1>
       <SearchBar />
-    </div>
-  );
+    </main>
+  )
 }
