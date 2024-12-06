@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^2.4.0",
     "@types/spotify-web-api-node": "^5.0.11",
     "chart.js": "^4.4.7",
+    "lodash": "^4.17.21",
     "next": "15.0.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",
+    "@types/lodash": "^4.17.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -2,8 +2,8 @@ import type SpotifyApi from 'spotify-web-api-node'
 
 export interface SpotifyImage {
   url: string;
-  height?: number | null;
-  width?: number | null;
+  height?: number | undefined | null;
+  width?: number | undefined | null; 
 }
 
 export interface MonthlyListenersData {
@@ -12,17 +12,14 @@ export interface MonthlyListenersData {
 }
 
 export interface ArtistStats {
-  id: string;
-  name: string;
   popularity: number;
-  followers: {
-    total: number;
-  };
+  followers: number;
   genres: string[];
+  name: string;
   images: SpotifyImage[];
   spotifyUrl: string;
+  id: string;
   lastUpdated: string;
-  monthlyListenersHistory: MonthlyListenersData[];
 }
 
 export type SpotifyArtist = SpotifyApi.ArtistObjectFull;
