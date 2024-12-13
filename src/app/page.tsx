@@ -20,7 +20,7 @@ export default function Home() {
           onClick={handleClear}
           className="text-4xl font-bold text-spotify-green hover:text-white transition-colors mb-8 mx-auto block"
         >
-          Resonance
+          Artist Analytics
         </button>
         <SearchBar 
           onSearchResults={setSearchResults} 
