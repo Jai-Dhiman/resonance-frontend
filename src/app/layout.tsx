@@ -1,10 +1,9 @@
 import './globals.css'
-import { Providers } from '@/lib/providers'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Artist Analytics',
-  description: 'Track artist metrics across music streaming services',
+  description: 'Music Artist Analytics Dashboard',
 }
 
 export default function RootLayout({
@@ -14,9 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
-        <Providers>{children}</Providers>
-      </body>
+      <body className="min-h-screen bg-spotify-dark text-white">{children}</body>
     </html>
   )
 }
