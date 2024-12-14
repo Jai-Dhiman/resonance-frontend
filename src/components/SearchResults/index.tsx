@@ -38,12 +38,12 @@ export default function SearchResults({ results, isLoading, error }: SearchResul
         >
           {artist.images[0] && (
             <Image
-            src={artist.images[0].url}
-            alt={artist.name}
-            width={48}
-            height={48}
-            className="rounded-full"
-          />
+              src={artist.images[0].url}
+              alt={artist.name}
+              width={artist.images[0].width || 48}
+              height={artist.images[0].height || 48}
+              className="rounded-full h-[48px] w-[48px] object-cover"
+            />
           )}
           <div>
             <h3 className="text-white font-semibold">{artist.name}</h3>
