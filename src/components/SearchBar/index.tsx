@@ -1,7 +1,6 @@
 'use client'
-
-import { useState } from 'react'
-import { searchArtists } from '@/lib/api'
+import { useState, useEffect } from 'react'
+import { useArtistSearch } from '@/lib/hooks/useArtistSearch'
 import SearchResults from '@/components/SearchResults'
 import { ArtistStats } from '@/types/spotify'
 
@@ -12,31 +11,23 @@ interface SearchBarProps {
   onQueryChange: (query: string) => void
 }
 
-export default function SearchBar({ 
-  onSearchResults, 
-  results, 
-  query, 
-  onQueryChange 
+export default function SearchBar({
+  onSearchResults,
+  results,
+  query,
+  onQueryChange
 }: SearchBarProps) {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
+  const { data, isLoading, error } = useArtistSearch(query)
 
-  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    if (data) {
+      onSearchResults(data)
+    }
+  }, [data, onSearchResults])
+
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!query.trim()) return
-
-    setIsLoading(true)
-    setError(null)
-    
-    try {
-      const searchResults = await searchArtists(query)
-      onSearchResults(searchResults)
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error('Search failed'))
-      onSearchResults([])
-    } finally {
-      setIsLoading(false)
-    }
   }
 
   return (
@@ -48,25 +39,24 @@ export default function SearchBar({
             value={query}
             onChange={(e) => onQueryChange(e.target.value)}
             placeholder="Search for an artist..."
-            className="w-full p-4 rounded-lg bg-spotify-light text-white border-none 
-                     focus:outline-none focus:ring-2 focus:ring-spotify-green 
-                     placeholder-gray-400"
+            className="w-full p-4 rounded-lg bg-spotify-light text-white border-none
+              focus:outline-none focus:ring-2 focus:ring-spotify-green
+              placeholder-gray-400"
           />
-          <button 
+          <button
             type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 
-                     bg-spotify-green text-black font-semibold rounded-md 
-                     hover:bg-white transition-colors"
+            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2
+              bg-spotify-green text-black font-semibold rounded-md
+              hover:bg-white transition-colors"
           >
             Search
           </button>
         </div>
       </form>
-
-      <SearchResults 
+      <SearchResults
         results={results}
         isLoading={isLoading}
-        error={error}
+        error={error instanceof Error ? error : null}
       />
     </div>
   )
