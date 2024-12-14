@@ -1,5 +1,7 @@
 import { ArtistStats } from '@/types/spotify';
 import { useRouter } from 'next/navigation';
+import { SearchSkeleton } from '@/components/Skeletons/SearchSkeleton';
+import Image from 'next/image';
 
 interface SearchResultsProps {
   results: ArtistStats[];
@@ -10,8 +12,9 @@ interface SearchResultsProps {
 export default function SearchResults({ results, isLoading, error }: SearchResultsProps) {
   const router = useRouter();
 
+
   if (isLoading) {
-    return <div className="text-gray-400 text-center mt-4">Searching...</div>;
+    return <SearchSkeleton />;
   }
   if (error) {
     return <div className="text-red-500 text-center mt-4">Error: {error.message}</div>;
@@ -34,11 +37,13 @@ export default function SearchResults({ results, isLoading, error }: SearchResul
           onClick={() => handleArtistClick(artist)}
         >
           {artist.images[0] && (
-            <img
-              src={artist.images[0].url}
-              alt={artist.name}
-              className="w-12 h-12 rounded-full"
-            />
+            <Image
+            src={artist.images[0].url}
+            alt={artist.name}
+            width={48}
+            height={48}
+            className="rounded-full"
+          />
           )}
           <div>
             <h3 className="text-white font-semibold">{artist.name}</h3>

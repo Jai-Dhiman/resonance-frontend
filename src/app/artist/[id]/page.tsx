@@ -4,7 +4,9 @@ import { useSearchParams } from 'next/navigation';
 import { ArtistStats } from '@/types/spotify';
 import { useArtistTopTracks } from '@/lib/hooks/useArtistTopTracks';
 import { useArtistYoutubeStats } from '@/lib/hooks/useArtistYoutubeStats';
+import { ArtistPageSkeleton } from '@/components/Skeletons/ArtistPageSkeleton';
 import Image from 'next/image';
+
 
 export default function ArtistPage() {
   const searchParams = useSearchParams();
@@ -16,12 +18,16 @@ export default function ArtistPage() {
   const { data: topTracks, isLoading: tracksLoading } = useArtistTopTracks(artistId);
   const { data: youtubeStats, isLoading: youtubeLoading } = useArtistYoutubeStats(artistId);
 
+  if (tracksLoading) {
+    return <ArtistPageSkeleton />;
+  }
+
   if (!artistData) {
     return <div>No artist data available</div>;
   }
 
   const artist: ArtistStats = JSON.parse(decodeURIComponent(artistData));
-  
+
   return (
     <div className="container mx-auto px-4 py-8"> 
       <button onClick={() => router.back()} className="mb-6 text-gray-400 hover:text-white"> ← Back to search </button>
@@ -43,7 +49,7 @@ export default function ArtistPage() {
             </div>
           </div>
           <a href={artist.spotifyUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"> 
-            Open in Spotify
+            Spotify
           </a>
         </div>
       </div>
@@ -51,13 +57,17 @@ export default function ArtistPage() {
         <h2 className="text-2xl font-bold mb-6 text-white">Top Tracks</h2> {tracksLoading ? (<p>Loading tracks...</p>) : (
           <div className="grid gap-4">
             {topTracks?.tracks.slice(0,3).map((track) => (
-              <div key={track.id} className="flex items-center gap-4 bg-spotify-light p-4 rounded-lg">
-                <Image src={track.album.images[0]?.url} alt={track.album.name} width={64} height={64} className="rounded"/>
-                <div>
-                  <h3 className="text-white font-semibold">{track.name}</h3>
-                  <p className="text-gray-400 text-sm"> {track.album.name} • {new Date(track.album.release_date).getFullYear()} </p>
+              <a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer" key={track.id} className="block transition-transform hover:scale-[1.02]">
+                <div className="flex items-center gap-4 bg-spotify-light p-4 rounded-lg">
+                  <Image src={track.album.images[0]?.url} alt={track.album.name} width={64} height={64} className="rounded"/>
+                  <div> 
+                    <h3 className="text-white font-semibold">{track.name}
+                    </h3>
+                    <p className="text-gray-400 text-sm"> {track.album.name} • {new Date(track.album.release_date).getFullYear()}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </a>  
             ))}
           </div>
         )}
