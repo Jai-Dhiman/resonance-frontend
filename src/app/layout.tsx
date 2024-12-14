@@ -14,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-spotify-dark text-white">{children}</body>
+      <body className="min-h-screen bg-spotify-dark text-white">
+        <Providers>{children}</Providers>
+        </body>
     </html>
   )
 }

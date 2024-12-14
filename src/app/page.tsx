@@ -1,8 +1,8 @@
 'use client'
-
 import SearchBar from '@/components/SearchBar'
 import { useState } from 'react'
 import { ArtistStats } from '@/types/spotify'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState<ArtistStats[]>([])
@@ -14,7 +14,8 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-spotify-dark">
+    <ErrorBoundary>
+      <main className="min-h-screen bg-spotify-dark">
       <div className="container mx-auto px-4 py-16">
         <button 
           onClick={handleClear}
@@ -30,5 +31,7 @@ export default function Home() {
         />
       </div>
     </main>
+    </ErrorBoundary>
+
   )
 }

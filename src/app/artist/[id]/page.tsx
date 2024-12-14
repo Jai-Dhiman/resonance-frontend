@@ -1,5 +1,4 @@
 'use client';
-
 import { useParams, useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { ArtistStats } from '@/types/spotify';
@@ -12,9 +11,8 @@ export default function ArtistPage() {
   if (!artistData) {
     return <div>No artist data available</div>;
   }
-
   const artist: ArtistStats = JSON.parse(decodeURIComponent(artistData));
-
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <button 
