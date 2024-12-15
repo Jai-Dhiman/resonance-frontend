@@ -1,8 +1,5 @@
 const API_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://resonance-api-production.up.railway.app/api/artists' : 'http://localhost:3001/api/artists';
 
-console.log('Environment:', process.env.NODE_ENV);
-console.log('API URL:', API_BASE_URL);
-
 export async function searchArtists(query: string) {
   try {
     const response = await fetch(`${API_BASE_URL}/search?q=${encodeURIComponent(query)}`);
