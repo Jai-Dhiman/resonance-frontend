@@ -1,4 +1,7 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}` : 'http://localhost:3001/api/artists';
+const API_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://resonance-api-production.up.railway.app/api/artists' : 'http://localhost:3001/api/artists';
+
+console.log('Environment:', process.env.NODE_ENV);
+console.log('API URL:', API_BASE_URL);
 
 export async function searchArtists(query: string) {
   try {
