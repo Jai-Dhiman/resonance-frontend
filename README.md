@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Artist Analytics Dashboard
+
+A Next.js application that provides analytics and insights for music artists across different platforms, featuring real-time search, interactive visualizations, and cross-platform statistics.
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Data Fetching**: TanStack React Query
+- **Styling**: Tailwind CSS
+- **Visualization**: Recharts
+- **State Management**: React Hooks + Context
+
+## Key Features
+
+- Real-time artist search with Spotify integration
+- Cross-platform statistics (Spotify + YouTube)
+- Interactive data visualizations
+- Responsive design with Spotify-inspired theme
+- Server-side API integration
+- Optimized performance with React Query caching
+
+## Project Structure
+
+src/
+├── app/ # Next.js app router pages
+│ ├── artist/[id]/ # Dynamic artist profile page
+│ ├── layout.tsx # Root layout with providers
+│ └── page.tsx # Homepage with search
+├── components/
+│ ├── Charts/ # Data visualization components
+│ ├── SearchBar/ # Search functionality
+│ ├── SearchResults/ # Results display
+│ └── Skeletons/ # Loading states
+├── lib/
+│ ├── api.ts # API client
+│ └── hooks/ # Custom React Query hooks
+└── types/ # TypeScript definitions
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm/yarn
+- Backend API running (see backend repository)
+
+### Environment Variables
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_API_URL=http://localhost:3001/api/artists
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run development server
 
-## Learn More
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Build for production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Core Components
 
-## Deploy on Vercel
+Artist Search
+Real-time search with React Query integration
+Debounced API calls
+Loading states and error handling
+Responsive result display
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Artist Profile
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Comprehensive artist statistics
+Platform comparison charts
+Top tracks visualization
+YouTube integration
+Responsive image handling
+
+# Data Visualization
+
+Platform comparison charts using Recharts
+Top tracks performance metrics
+Interactive data displays
+
+# Styling
+
+The application uses a custom Tailwind configuration with Spotify-inspired theming:
+colors: {
+spotify: {
+green: "#1DB954",
+dark: "#121212",
+light: "#282828",
+}
+}
+
+# Development
+
+# Start development server
+
+npm run dev
+
+# Lint code
+
+npm run lint
+
+# Type check
+
+npx tsc --noEmit
+
+# Dependencies
+
+Next.js 15.0.4
+React Query 5.62.7
+Recharts 2.15.0
+TailwindCSS 3.4.1
+TypeScript 5.x
