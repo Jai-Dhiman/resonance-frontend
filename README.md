@@ -20,23 +20,6 @@ A Next.js application that provides analytics and insights for music artists acr
 - Server-side API integration
 - Optimized performance with React Query caching
 
-## Project Structure
-
-src/
-├── app/ # Next.js app router pages
-│ ├── artist/[id]/ # Dynamic artist profile page
-│ ├── layout.tsx # Root layout with providers
-│ └── page.tsx # Homepage with search
-├── components/
-│ ├── Charts/ # Data visualization components
-│ ├── SearchBar/ # Search functionality
-│ ├── SearchResults/ # Results display
-│ └── Skeletons/ # Loading states
-├── lib/
-│ ├── api.ts # API client
-│ └── hooks/ # Custom React Query hooks
-└── types/ # TypeScript definitions
-
 ## Getting Started
 
 ### Prerequisites
@@ -67,35 +50,34 @@ npm run build
 # Core Components
 
 Artist Search
+
 Real-time search with React Query integration
+
 Debounced API calls
+
 Loading states and error handling
+
 Responsive result display
 
 # Artist Profile
 
 Comprehensive artist statistics
+
 Platform comparison charts
+
 Top tracks visualization
+
 YouTube integration
+
 Responsive image handling
 
 # Data Visualization
 
 Platform comparison charts using Recharts
+
 Top tracks performance metrics
+
 Interactive data displays
-
-# Styling
-
-The application uses a custom Tailwind configuration with Spotify-inspired theming:
-colors: {
-spotify: {
-green: "#1DB954",
-dark: "#121212",
-light: "#282828",
-}
-}
 
 # Development
 
@@ -114,7 +96,11 @@ npx tsc --noEmit
 # Dependencies
 
 Next.js 15.0.4
+
 React Query 5.62.7
+
 Recharts 2.15.0
+
 TailwindCSS 3.4.1
+
 TypeScript 5.x
