@@ -5,6 +5,8 @@ import { ArtistStats } from '@/types/spotify';
 import { useArtistTopTracks } from '@/lib/hooks/useArtistTopTracks';
 import { useArtistYoutubeStats } from '@/lib/hooks/useArtistYoutubeStats';
 import { ArtistPageSkeleton } from '@/components/Skeletons/ArtistPageSkeleton';
+import { PlatformComparison } from '@/components/Charts/PlatformComparison';
+import { TopTracksChart } from '@/components/Charts/TopTracksChart';
 import Image from 'next/image';
 
 
@@ -67,6 +69,12 @@ export default function ArtistPage() {
             </a>
           </div>
         </div>
+      </div>
+      <div className="mt-12 grid md:grid-cols-2 gap-6">
+        <PlatformComparison spotifyFollowers={artist.followers}youtubeSubscribers={youtubeStats?.stats ? parseInt(youtubeStats.stats.subscriberCount) : undefined}/>
+        {topTracks && (
+          <TopTracksChart tracks={topTracks.tracks} />
+        )}
       </div>
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-6 text-white">Top Tracks</h2> {tracksLoading ? (<p>Loading tracks...</p>) : (
