@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     domains: ["i.scdn.co"],
-  },
-  env: {
-    API_BASE_URL: process.env.API_BASE_URL || "http://localhost:3001/api",
   },
   webpack: (config) => {
     config.resolve.extensions = [".ts", ".tsx", ".js", ".jsx", ...config.resolve.extensions];
