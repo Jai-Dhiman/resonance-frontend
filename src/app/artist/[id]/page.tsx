@@ -36,11 +36,25 @@ export default function ArtistPage() {
         </div>
         <div className="w-full md:w-2/3">
           <h1 className="text-4xl font-bold mb-4 text-white">{artist.name}</h1>
-          <div className="mb-6">
-            <div className="bg-spotify-light px-4 py-2 rounded-lg inline-block">
+          <div className="mb-6 flex flex-wrap gap-4">
+            <div className="bg-spotify-light px-4 py-2 rounded-lg">
               <h3 className="text-gray-400 text-sm font-semibold">Spotify Followers</h3>
               <p className="text-2xl text-white">{artist.followers.toLocaleString()}</p>
             </div>
+            {youtubeStats?.channelFound && (
+              <><div className="bg-spotify-light px-4 py-2 rounded-lg">
+                <h3 className="text-gray-400 text-sm font-semibold">YouTube Subscribers</h3>
+                <p className="text-2xl text-white">
+                  {parseInt(youtubeStats.stats?.subscriberCount || '0').toLocaleString()}
+                </p>
+              </div>
+              <div className="bg-spotify-light px-4 py-2 rounded-lg">
+                <h3 className="text-gray-400 text-sm font-semibold">Total Youtube Views</h3>
+                <p className="text-2xl text-white">
+                  {parseInt(youtubeStats.stats?.viewCount || '0').toLocaleString()}
+                </p>
+              </div></>
+            )}
           </div>
           <div className="mt-6">
             <h3 className="text-gray-400 font-semibold mb-2">Genres</h3>
@@ -48,9 +62,10 @@ export default function ArtistPage() {
               {artist.genres.slice(0,3).map((genre) => (<span key={genre} className="bg-spotify-light text-white px-3 py-1 rounded-full text-sm"> {genre} </span>))}
             </div>
           </div>
-          <a href={artist.spotifyUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"> 
-            Spotify
-          </a>
+          <div className="flex gap-4 mt-6">
+            <a href={artist.spotifyUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"> Spotify
+            </a>
+          </div>
         </div>
       </div>
       <div className="mt-12">
@@ -72,31 +87,6 @@ export default function ArtistPage() {
           </div>
         )}
       </div>
-      {/* {youtubeStats?.channelFound && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6 text-white">YouTube Stats</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-spotify-light p-4 rounded-lg">
-              <h3 className="text-gray-400 text-sm font-semibold">Subscribers</h3>
-              <p className="text-2xl text-white">
-                {parseInt(youtubeStats.stats?.subscriberCount || '0').toLocaleString()}
-              </p>
-            </div>
-            <div className="bg-spotify-light p-4 rounded-lg">
-              <h3 className="text-gray-400 text-sm font-semibold">Total Views</h3>
-              <p className="text-2xl text-white">
-                {parseInt(youtubeStats.stats?.viewCount || '0').toLocaleString()}
-              </p>
-            </div>
-            <div className="bg-spotify-light p-4 rounded-lg">
-              <h3 className="text-gray-400 text-sm font-semibold">Videos</h3>
-              <p className="text-2xl text-white">
-                {parseInt(youtubeStats.stats?.videoCount || '0').toLocaleString()}
-              </p>
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }
